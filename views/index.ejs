@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crescentnotes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/style/styles.css">
+    
+
+</head>
+<body>
+  <section class="Header">
+    <!-- logo -->
+    <a href="#" class="logo"><img src="/images/logo.jpg" alt="Logo"></a>
+    <!-- navigation bar -->
+    <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#notes">Notes</a>
+        <a href="#contact">Contact</a>
+        <a href="#aboutus">About Us</a>
+         
+    </nav>
+    
+    
+    <% if (user) { %>
+        <div class="profile">
+            <div class="avatar" onclick="toggleDropdown()">
+                <span><%= user.email.charAt(0).toUpperCase() %></span>
+            </div>
+            <div class="dropdown-arrow">▼</div>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <p>Welcome, <%= user.email %></p>
+                <a href="/logout">Sign out</a>
+            </div>
+        </div>
+    <% } else { %>
+        <a class="login-btn" href="/login">Login</a>
+        <a class="register-btn"   href="/register">Register</a>
+    <% } %>
+     
+     
+
+     
+     
+    </section>
+<section class="container" id="home">
+    <div class="box forms">
+        <div class="selection">
+            <section class="form-section">
+                 
+                <form onsubmit="fetchNotes(); return false;">
+                  <label for="branch">Branch:</label>
+                  <select name="branch" id="branch">
+                    <option value="BTech">Select-Branch</option>
+                      <option value="BTech">BTech</option>
+                  </select>
+                  <label for="department">Department:</label>
+                  <select name="department" id="department">
+                    <option value="#">Select-Department</option>
+                      <option value="CSE">CSE</option>
+                      <option value="CSE_CS">CSE (CS)</option>
+                      <option value="CSE_AIDS">CSE (AIDS)</option>
+                      <option value="CSE_IOT">CSE (IOT)</option>
+                  </select>
+                  <label for="semester">Semester:</label>
+                  <select name="semester" id="semester">
+                    <option value="#">Select-Semester</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                  </select>
+                  <button type="submit">Find Notes</button>
+              </form>
+          
+               
+                
+                   
+                     
+              </section>
+               
+              </section>
+              <section id="notes">
+                <h1 class="heading"> <span>Notes</span></h1>
+              <table border="1" id="notesTable">
+                  <thead>
+                      <tr>
+                          <th>Serial Number</th>
+                          <th>Course Code</th>
+                          <th>Subject Name</th>
+                          <th>Modules</th>
+                          <th>PDF</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+              </table>           
+     </section>
+  <!-- contact -->
+
+  <section class="contact" id="contact">
+
+    <h1 class="heading"> <span>contact</span></h1>
+
+    <div class="contactrow">
+
+        <div class="image">
+            <img src="/images/contact.png" alt="">
+        </div>
+         
+        <form action="/contact" method="POST" >
+            <h3>get in touch</h3>
+
+            <span>your name</span>
+            <input type="text" name="name" class="box1" required>
+
+            <span>your email</span>
+            <input type="email" name="email" class="box1" required>
+
+            <span>your message</span>
+            <textarea class="box1" name="message" cols="30" rows="10" placeholder="Write your message or ask any questions" ></textarea>
+
+            <input type="submit" value="contact" class="btn" required>
+            <% if (locals.loginsucess) { %>
+                <h1>
+                  <%= loginsucess %>
+                   
+                </h1>
+                <% } else { %>
+                  <h1> </h1>
+                  <% } %>
+        </form>
+
+    </div>
+
+</section>
+
+<!-- contact --> 
+ <!-- services -->
+
+  
+
+<!-- services -->
+ <!-- about us -->
+  
+
+
+
+<!-- about us -->   
+<script src="/script/script.js"></script>
+ 
+ 
+<%- include("footer.ejs") %>
