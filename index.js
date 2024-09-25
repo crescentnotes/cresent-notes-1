@@ -23,11 +23,11 @@ const __dirname = path.dirname(__filename);
 
 // Database connection
 const db = new pg.Client({
-     user: "irfan",
-    host: "dpg-crq1e3ogph6c73a5ik90-a",
-    database: "users_7dqa",
-    password: "5vlOZXcHcaWajpSw1ssGtvZ5ggpd8wfk",
-    port: 5432,
+      user: 'postgres.sajvucjpbelzuwyzxbsp',
+  host: 'aws-0-ap-southeast-1.pooler.supabase.com',
+  database: 'postgres',
+  password: '[YOUR-PASSWORD]',
+  port: 6543,
 });
 db.connect();
  
