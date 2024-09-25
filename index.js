@@ -22,17 +22,26 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Database connection
-const db = new pg.Client({
-        user: 'postgres.sajvucjpbelzuwyzxbsp',
+// Database connection using pg.Client
+const db = new Client({
+  user: 'postgres.sajvucjpbelzuwyzxbsp',
   host: 'aws-0-ap-southeast-1.pooler.supabase.com',
   database: 'postgres',
-  password: '[YOUR-PASSWORD]',
+  password: '[YOUR-PASSWORD]',  // Replace with your actual password
   port: 6543,
   ssl: {
-    rejectUnauthorized: false,  // If you don't have the server's SSL certificate
+    rejectUnauthorized: false,  // Allows connection without SSL certificate
   },
 });
-db.connect();
+
+// Connect to the database
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err.stack);
+  } else {
+    console.log('Connected to PostgreSQL database');
+  }
+});
  
 const saltrounds = 10;
 const storage = multer.diskStorage({
