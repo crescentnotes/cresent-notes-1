@@ -65,10 +65,19 @@ const upload = multer({ storage });
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(session({
+//     secret: 'your-session-secret',
+//     resave: false,
+//     saveUninitialized: true,
+// }));
 app.use(session({
-    secret: 'your-session-secret',
-    resave: false,
-    saveUninitialized: true,
+  secret: 'your-session-secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+    // Remove maxAge to make the session last until the browser is closed
+    // You can also add other options like 'secure' or 'httpOnly' for security
+  }
 }));
 
 app.use(passport.initialize());
