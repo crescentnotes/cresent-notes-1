@@ -20,7 +20,8 @@ const port = 4000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
+app.use(express.static('public'));
+app.use('/uploads', express.static('uploads'));
 // Database connection
 // Database connection using pg.Client
  const db = new pg.Client({
@@ -856,7 +857,7 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
 // app.use((req, res, next) => {
 //   res.status(404).render('404');
 // });
