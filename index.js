@@ -92,7 +92,7 @@ app.use(session({
   secret: 'your-session-secret',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 15* 60 * 1000 } // Session expires after 15 minutes (15 * 60 * 1000 ms)
+  cookie: { expires: false } // Session expires after 15 minutes (15 * 60 * 1000 ms)
 }));
 
 const isAuthenticated = (req, res, next) => {
