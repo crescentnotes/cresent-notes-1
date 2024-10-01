@@ -71,15 +71,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //     resave: false,
 //     saveUninitialized: true,
 // }));
-// app.use(session({
-//   secret: 'your-session-secret',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { 
-//     // Remove maxAge to make the session last until the browser is closed
-//     // You can also add other options like 'secure' or 'httpOnly' for security
-//   }
-// }));
+app.use(session({
+  secret: 'your-session-secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+    // Remove maxAge to make the session last until the browser is closed
+   expire: false
+    // You can also add other options like 'secure' or 'httpOnly' for security
+  }
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
