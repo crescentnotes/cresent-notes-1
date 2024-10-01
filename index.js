@@ -95,32 +95,32 @@ app.use(session({
   cookie: { expires: false } // Session expires after 15 minutes (15 * 60 * 1000 ms)
 }));
 
-// const isAuthenticated = (req, res, next) => {
-//   if (req.session.user) {
-//       // Check if the session has expired
-//       if (req.session.cookie.expires > Date.now()) {
-//           return next();
-//       } else {
-//           req.session.destroy(err => {
-//               if (err) {
-//                   console.error("Error destroying session:", err);
-//                   return res.status(500).send("Internal Server Error");
-//               }
-//               res.redirect('/login');
-//           });
-//       }
-//   } else {
-//       res.redirect('/login');
-//   }
-// };
 const isAuthenticated = (req, res, next) => {
   if (req.session.user) {
-      // No need to reset the expiration, the session lasts until the browser is closed
-      return next();
+      // Check if the session has expired
+      if (req.session.cookie.expires > Date.now()) {
+          return next();
+      } else {
+          req.session.destroy(err => {
+              if (err) {
+                  console.error("Error destroying session:", err);
+                  return res.status(500).send("Internal Server Error");
+              }
+              res.redirect('/login');
+          });
+      }
   } else {
       res.redirect('/login');
   }
 };
+// const isAuthenticated = (req, res, next) => {
+//   if (req.session.user) {
+//       // No need to reset the expiration, the session lasts until the browser is closed
+//       return next();
+//   } else {
+//       res.redirect('/login');
+//   }
+// };
 
 app.get('/', (req, res) => {
   if (req.session.user) {
