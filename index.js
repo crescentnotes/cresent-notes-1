@@ -77,7 +77,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { 
     // Remove maxAge to make the session last until the browser is closed
-   expire: false
+   expire: 3 * 365 * 24 * 60 * 60 * 1000
     // You can also add other options like 'secure' or 'httpOnly' for security
   }
 }));
@@ -93,7 +93,7 @@ app.use(session({
   secret: 'your-session-secret',
   resave: false,
   saveUninitialized: true,
-  cookie: { expires: false } // Session expires after 15 minutes (15 * 60 * 1000 ms)
+  cookie: { expires:   3 * 365 * 24 * 60 * 60 * 1000 } // Session expires after 15 minutes (15 * 60 * 1000 ms)
 }));
 
 const isAuthenticated = (req, res, next) => {
@@ -446,6 +446,9 @@ app.use(session({
   secret: 'your_secret_key',
   resave: false,
   saveUninitialized: true,
+ cookie: {
+    maxAge: 3 * 365 * 24 * 60 * 60 * 1000  // 3 years in milliseconds
+  }
 }));
 
 // Change Password Route
