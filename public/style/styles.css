@@ -247,7 +247,7 @@ th, td {
     justify-content: space-around;
     padding: 2rem;
     padding-top: 4rem;
-     
+     background-attachment: fixed;
     gap: 2rem;
     position: relative;
     overflow: hidden;
